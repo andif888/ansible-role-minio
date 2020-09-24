@@ -1,0 +1,44 @@
+---
+# tasks file for ansible-role-minio
+- name: Install minio
+  get_url:
+    url: https://dl.min.io/server/minio/release/linux-amd64/minio
+    dest: /usr/local/bin/minio
+    owner: root
+    group: root
+    mode: 0755
+  notify: restart_minio
+
+- name: add minio-user group
+  group: 
+    name: minio-user
+    state: present
+
+- name: add minio-user
+  user:
+    name: minio-user
+    group: minio-user
+
+- name: "Create Minio volume"
+  file:
+    path: '{{ minio_volumes_path }}'
+    state: directory
+    mode: '2771'
+    owner: minio-user
+
+- name: Install minio systemd service
+  get_url:
+    url: https://raw.githubusercontent.com/minio/minio-service/master/linux-systemd/minio.service
+    dest: /lib/systemd/system/minio.service
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Install minio config
+  template:
+    src: templates/minio.j2
+    dest: /etc/default/minio
+    mode: 0644
+    owner: root
+    group: root
+  notify: restart_minio

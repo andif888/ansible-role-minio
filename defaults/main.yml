@@ -1,0 +1,6 @@
+---
+# defaults file for ansible-role-minio
+minio_volumes_path: /tmp/minio
+minio_listen_port: 9000
+minio_access_key: Server-Access-Key
+minio_secret_key: Server-Secret-Key
