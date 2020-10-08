@@ -42,3 +42,9 @@
     owner: root
     group: root
   notify: restart_minio
+
+- name: Ensure minio is enabled and started
+  service:
+    name: minio
+    state: started
+    enabled: yes
