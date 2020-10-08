@@ -23,8 +23,9 @@
   file:
     path: '{{ minio_volumes_path }}'
     state: directory
-    mode: '2771'
+    mode: 02771
     owner: minio-user
+    group: minio-user
 
 - name: Install minio systemd service
   get_url:
