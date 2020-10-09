@@ -27,6 +27,14 @@
     owner: minio-user
     group: minio-user
 
+- name: "Ensure permissions on Minio volume"
+  file:
+    path: '{{ minio_volumes_path }}'
+    state: directory
+    mode: 02771
+    owner: minio-user
+    group: minio-user
+
 - name: Install minio systemd service
   get_url:
     url: https://raw.githubusercontent.com/minio/minio-service/master/linux-systemd/minio.service
