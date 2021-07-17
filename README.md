@@ -21,6 +21,7 @@ Including an example of how to use your role (for instance, with variables passe
     - role: username.rolename
       minio_volumes_path: /tmp/minio
       minio_listen_port: 9000
+      minio_console_listen_port: 9002
       minio_access_key: Server-Access-Key
       minio_secret_key: Server-Secret-Key
 ``` 

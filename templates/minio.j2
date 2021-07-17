@@ -2,10 +2,10 @@
 MINIO_VOLUMES="{{ minio_volumes_path }}"
 
 # Use if you want to run MinIO on a custom port.
-MINIO_OPTS="--address :{{ minio_listen_port }}"
+MINIO_OPTS="--console-address :{{ minio_console_listen_port }} --address :{{ minio_listen_port }}"
 
 # Access Key of the server.
-MINIO_ACCESS_KEY={{ minio_access_key }}
+MINIO_ROOT_USER={{ minio_access_key }}
 
 # Secret key of the server.
-MINIO_SECRET_KEY={{ minio_secret_key }}
+MINIO_ROOT_PASSWORD={{ minio_secret_key }}
